@@ -1,4 +1,5 @@
 // OINANCE PAY V1.2
+// DEMO ONLY
 
 let balanceVisible = true;
 
@@ -39,13 +40,10 @@ hideBalance.addEventListener("click", function () {
 function showMessage(text) {
 
     message.textContent = text + " — Coming soon";
-
     message.style.display = "block";
 
     setTimeout(function () {
-
         message.style.display = "none";
-
     }, 2000);
 
 }
@@ -70,7 +68,7 @@ function closeSendMoney() {
 
 
 // ==============================
-// DEMO ACCOUNT NAME LOOKUP
+// DEMO ACCOUNT NAME
 // ==============================
 
 function getAccountName(accountNumber, bank) {
@@ -109,29 +107,20 @@ function continueSend() {
 
 
     if (!recipient) {
-
         alert("Please enter the recipient.");
-
         return;
-
     }
 
 
     if (bank === "Select bank") {
-
         alert("Please select a bank.");
-
         return;
-
     }
 
 
     if (!amount || Number(amount) <= 0) {
-
         alert("Please enter a valid amount.");
-
         return;
-
     }
 
 
@@ -143,7 +132,7 @@ function continueSend() {
 
         alert(
             "Account name could not be found.\n\n" +
-            "For testing, use:\n" +
+            "For testing use:\n" +
             "Account: 0123456789\n" +
             "Bank: GTBank"
         );
@@ -156,14 +145,11 @@ function continueSend() {
     document.getElementById("confirmAmount").textContent =
         "₦" + Number(amount).toLocaleString();
 
-
     document.getElementById("confirmRecipient").textContent =
         accountName;
 
-
     document.getElementById("confirmBank").textContent =
         bank;
-
 
     document.getElementById("confirmDescription").textContent =
         description || "No description";
@@ -171,7 +157,6 @@ function continueSend() {
 
     document.getElementById("sendScreen").style.display =
         "none";
-
 
     document.getElementById("confirmScreen").style.display =
         "block";
@@ -195,10 +180,26 @@ function backToSend() {
 
 
 // ==============================
-// OPEN PIN SCREEN
+// CONFIRM & PAY
 // ==============================
+// IMPORTANT:
+// This function ONLY opens the PIN screen.
+// It does NOT complete the payment.
 
 function completePayment() {
+
+    const amount =
+        Number(document.getElementById("amount").value);
+
+
+    if (!amount || amount <= 0) {
+
+        alert("Invalid payment amount.");
+
+        return;
+
+    }
+
 
     document.getElementById("confirmScreen").style.display =
         "none";
@@ -207,17 +208,27 @@ function completePayment() {
         "block";
 
 
-    document.getElementById("pinInput").value = "";
+    document.getElementById("pinInput").value =
+        "";
 
-    document.getElementById("pinError").textContent = "";
+    document.getElementById("pinError").textContent =
+        "";
 
     updatePinDots();
+
+
+    // Automatically put the cursor inside PIN box
+    setTimeout(function () {
+
+        document.getElementById("pinInput").focus();
+
+    }, 100);
 
 }
 
 
 // ==============================
-// BACK TO CONFIRMATION
+// BACK FROM PIN
 // ==============================
 
 function backToConfirmation() {
@@ -262,11 +273,20 @@ function updatePinDots() {
 }
 
 
-// Update dots while typing
+// ==============================
+// PIN INPUT
+// ==============================
 
 document.getElementById("pinInput").addEventListener(
     "input",
-    updatePinDots
+    function () {
+
+        // Allow numbers only
+        this.value = this.value.replace(/\D/g, "");
+
+        updatePinDots();
+
+    }
 );
 
 
@@ -286,7 +306,7 @@ function verifyPin() {
     if (enteredPin.length !== 4) {
 
         document.getElementById("pinError").textContent =
-            "Please enter your 4-digit PIN.";
+            "Enter your 4-digit PIN.";
 
         return;
 
@@ -298,7 +318,8 @@ function verifyPin() {
         document.getElementById("pinError").textContent =
             "Incorrect PIN. Please try again.";
 
-        document.getElementById("pinInput").value = "";
+        document.getElementById("pinInput").value =
+            "";
 
         updatePinDots();
 
@@ -307,14 +328,16 @@ function verifyPin() {
     }
 
 
+    // ==========================
     // PIN CORRECT
-
-    document.getElementById("pinError").textContent =
-        "";
-
+    // ==========================
 
     const amount =
         Number(document.getElementById("amount").value);
+
+
+    document.getElementById("pinError").textContent =
+        "";
 
 
     document.getElementById("pinScreen").style.display =
@@ -352,7 +375,6 @@ function finishPayment() {
 
     document.getElementById("bank").value =
         "Select bank";
-
 
     document.getElementById("pinInput").value =
         "";
