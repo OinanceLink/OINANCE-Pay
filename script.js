@@ -22,7 +22,7 @@ hideBalance.addEventListener("click", function () {
 
     } else {
 
-        balance.textContent = "₦100,000.00";
+        balance.textContent = "₦327,500.46";
         hideBalance.textContent = "👁";
 
         balanceVisible = true;
