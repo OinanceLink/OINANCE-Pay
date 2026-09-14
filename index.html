@@ -11,36 +11,52 @@
 
 <body>
 
+    <!-- HEADER -->
+
     <header class="topbar">
+
         <div class="brand">
+
             <div class="logo">
-    <img src="file_000000001bdc81f496a425cbbdef65a7.png" alt="OINANCE Logo">
+                <img src="file_000000001bdc81f496a425cbbdef65a7.png"
+                     alt="OINANCE Logo">
             </div>
+
             <div>
                 <h1>OINANCE</h1>
                 <span>PAY</span>
             </div>
+
         </div>
 
         <button class="notification">🔔</button>
+
     </header>
 
 
     <main>
 
-        <!-- Welcome -->
+        <!-- WELCOME -->
+
         <section class="welcome">
+
             <p>Welcome back</p>
+
             <h2>OINANCE User 👋</h2>
+
         </section>
 
 
-        <!-- Wallet -->
+        <!-- WALLET -->
+
         <section class="wallet-card">
 
             <div class="wallet-top">
+
                 <span>Available Balance</span>
+
                 <button id="hideBalance">👁</button>
+
             </div>
 
             <h3 id="balance">₦100,000.00</h3>
@@ -48,13 +64,11 @@
             <div class="wallet-actions">
 
                 <button onclick="showMessage('Add Money')">
-                    <span>＋</span>
-                    Add Money
+                    ＋ Add Money
                 </button>
 
                 <button onclick="showMessage('Withdraw')">
-                    <span>↗</span>
-                    Withdraw
+                    ↗ Withdraw
                 </button>
 
             </div>
@@ -62,14 +76,15 @@
         </section>
 
 
-        <!-- Services -->
+        <!-- SERVICES -->
+
         <section class="services">
 
             <h2>Services</h2>
 
             <div class="service-grid">
 
-                <button onclick="showMessage('Send Money')">
+                <button onclick="openSendMoney()">
                     <div>↗</div>
                     <span>Send</span>
                 </button>
@@ -114,64 +129,288 @@
         </section>
 
 
-        <!-- Transactions -->
+        <!-- TRANSACTIONS -->
+
         <section class="transactions">
 
             <div class="section-title">
+
                 <h2>Recent Transactions</h2>
+
                 <button onclick="showMessage('All Transactions')">
                     See all
                 </button>
+
             </div>
+
 
             <div class="transaction">
 
-                <div class="transaction-icon">↙</div>
+                <div class="transaction-icon">
+                    ↙
+                </div>
 
                 <div class="transaction-info">
+
                     <strong>Money Received</strong>
-                    <small>Today • 10:42 AM</small>
+
+                    <small>
+                        Today • 10:42 AM
+                    </small>
+
                 </div>
 
-                <strong class="received">+₦25,000</strong>
+                <strong class="received">
+                    +₦25,000
+                </strong>
 
             </div>
 
 
             <div class="transaction">
 
-                <div class="transaction-icon">📱</div>
-
-                <div class="transaction-info">
-                    <strong>Airtime</strong>
-                    <small>Yesterday • 6:21 PM</small>
+                <div class="transaction-icon">
+                    📱
                 </div>
 
-                <strong>-₦2,000</strong>
+                <div class="transaction-info">
+
+                    <strong>Airtime</strong>
+
+                    <small>
+                        Yesterday • 6:21 PM
+                    </small>
+
+                </div>
+
+                <strong>
+                    -₦2,000
+                </strong>
 
             </div>
-
 
         </section>
 
     </main>
 
 
-    <!-- Bottom Navigation -->
+    <!-- SEND MONEY SCREEN -->
+
+    <div id="sendScreen" class="screen">
+
+        <div class="screen-header">
+
+            <button onclick="closeSendMoney()">←</button>
+
+            <h2>Send Money</h2>
+
+            <span></span>
+
+        </div>
+
+
+        <div class="send-container">
+
+            <p class="form-label">
+                Recipient
+            </p>
+
+            <input
+                type="tel"
+                id="recipient"
+                placeholder="Phone or account number"
+            >
+
+
+            <p class="form-label">
+                Bank
+            </p>
+
+            <select id="bank">
+
+                <option>
+                    Select bank
+                </option>
+
+                <option>
+                    Access Bank
+                </option>
+
+                <option>
+                    GTBank
+                </option>
+
+                <option>
+                    First Bank
+                </option>
+
+                <option>
+                    UBA
+                </option>
+
+                <option>
+                    Zenith Bank
+                </option>
+
+                <option>
+                    OPay
+                </option>
+
+                <option>
+                    Other Bank
+                </option>
+
+            </select>
+
+
+            <p class="form-label">
+                Amount
+            </p>
+
+            <input
+                type="number"
+                id="amount"
+                placeholder="₦0.00"
+            >
+
+
+            <p class="form-label">
+                Description
+            </p>
+
+            <input
+                type="text"
+                id="description"
+                placeholder="What's this payment for?"
+            >
+
+
+            <button
+                class="continue-button"
+                onclick="continueSend()"
+            >
+                Continue
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CONFIRMATION SCREEN -->
+
+    <div id="confirmScreen" class="screen">
+
+        <div class="screen-header">
+
+            <button onclick="backToSend()">←</button>
+
+            <h2>Confirm Payment</h2>
+
+            <span></span>
+
+        </div>
+
+
+        <div class="confirmation">
+
+            <div class="confirm-icon">
+                ↗
+            </div>
+
+            <p>
+                You're sending
+            </p>
+
+            <h3 id="confirmAmount">
+                ₦0
+            </h3>
+
+            <p id="confirmRecipient"></p>
+
+
+            <div class="confirm-details">
+
+                <p>
+                    <strong>Bank</strong>
+                    <span id="confirmBank"></span>
+                </p>
+
+                <p>
+                    <strong>Description</strong>
+                    <span id="confirmDescription"></span>
+                </p>
+
+            </div>
+
+
+            <button
+                class="continue-button"
+                onclick="completePayment()"
+            >
+                Confirm & Pay
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- SUCCESS SCREEN -->
+
+    <div id="successScreen" class="screen">
+
+        <div class="success">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h2>
+                Payment Successful
+            </h2>
+
+            <p>
+                Your demo transaction has been completed.
+            </p>
+
+            <h3 id="successAmount">
+                ₦0
+            </h3>
+
+
+            <button
+                class="continue-button"
+                onclick="finishPayment()"
+            >
+                Done
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- MESSAGE -->
+
+    <div id="message"></div>
+
+
+    <!-- BOTTOM NAVIGATION -->
 
     <nav class="bottom-nav">
 
-        <button class="active" onclick="showMessage('Home')">
+        <button class="active">
             <span>⌂</span>
             Home
         </button>
 
-        <button onclick="showMessage('Payments')">
+        <button onclick="openSendMoney()">
             <span>↗</span>
             Pay
         </button>
 
-        <button onclick="showMessage('Transactions')">
+        <button onclick="showMessage('Transaction History')">
             <span>▤</span>
             History
         </button>
@@ -184,10 +423,7 @@
     </nav>
 
 
-    <div id="message"></div>
-
-
     <script src="script.js"></script>
 
 </body>
-                  </html>
+                    </html>
