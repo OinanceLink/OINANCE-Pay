@@ -1,4 +1,4 @@
-// OINANCE Pay V1
+// OINANCE PAY V1
 
 let balanceVisible = true;
 
@@ -6,95 +6,200 @@ const balance = document.getElementById("balance");
 const hideBalance = document.getElementById("hideBalance");
 const message = document.getElementById("message");
 
-// Hide / show wallet balance
+
+// ==============================
+// WALLET BALANCE
+// ==============================
+
 hideBalance.addEventListener("click", function () {
 
     if (balanceVisible) {
+
         balance.textContent = "₦••••••";
         hideBalance.textContent = "👁‍🗨";
+
         balanceVisible = false;
+
     } else {
+
         balance.textContent = "₦100,000.00";
         hideBalance.textContent = "👁";
+
         balanceVisible = true;
+
     }
 
 });
 
 
-// Button messages
+// ==============================
+// GENERAL MESSAGE
+// ==============================
+
 function showMessage(text) {
 
     message.textContent = text + " — Coming soon";
+
     message.style.display = "block";
 
     setTimeout(function () {
+
         message.style.display = "none";
+
     }, 2000);
 
 }
-// SEND MONEY FLOW
+
+
+// ==============================
+// SEND MONEY
+// ==============================
 
 function openSendMoney() {
+
     document.getElementById("sendScreen").style.display = "block";
+
 }
 
+
 function closeSendMoney() {
+
     document.getElementById("sendScreen").style.display = "none";
+
 }
+
+
+// ==============================
+// CONTINUE SEND
+// ==============================
 
 function continueSend() {
 
-    const recipient = document.getElementById("recipient").value;
-    const bank = document.getElementById("bank").value;
-    const amount = document.getElementById("amount").value;
-    const description = document.getElementById("description").value;
+    const recipient =
+        document.getElementById("recipient").value.trim();
 
-    if (!recipient || bank === "Select bank" || !amount) {
-        alert("Please complete the payment details.");
+    const bank =
+        document.getElementById("bank").value;
+
+    const amount =
+        document.getElementById("amount").value;
+
+    const description =
+        document.getElementById("description").value.trim();
+
+
+    if (!recipient) {
+
+        alert("Please enter the recipient.");
+
         return;
+
     }
+
+
+    if (bank === "Select bank") {
+
+        alert("Please select a bank.");
+
+        return;
+
+    }
+
+
+    if (!amount || Number(amount) <= 0) {
+
+        alert("Please enter a valid amount.");
+
+        return;
+
+    }
+
 
     document.getElementById("confirmAmount").textContent =
         "₦" + Number(amount).toLocaleString();
 
+
     document.getElementById("confirmRecipient").textContent =
         recipient;
+
 
     document.getElementById("confirmBank").textContent =
         bank;
 
+
     document.getElementById("confirmDescription").textContent =
         description || "No description";
 
-    document.getElementById("sendScreen").style.display = "none";
 
-    document.getElementById("confirmScreen").style.display = "block";
+    document.getElementById("sendScreen").style.display =
+        "none";
+
+
+    document.getElementById("confirmScreen").style.display =
+        "block";
+
 }
+
+
+// ==============================
+// BACK TO SEND
+// ==============================
 
 function backToSend() {
-    document.getElementById("confirmScreen").style.display = "none";
-    document.getElementById("sendScreen").style.display = "block";
+
+    document.getElementById("confirmScreen").style.display =
+        "none";
+
+    document.getElementById("sendScreen").style.display =
+        "block";
+
 }
+
+
+// ==============================
+// COMPLETE PAYMENT
+// ==============================
 
 function completePayment() {
 
-    const amount = document.getElementById("amount").value;
+    const amount =
+        Number(document.getElementById("amount").value);
 
-    document.getElementById("confirmScreen").style.display = "none";
+
+    document.getElementById("confirmScreen").style.display =
+        "none";
+
 
     document.getElementById("successAmount").textContent =
-        "₦" + Number(amount).toLocaleString();
+        "₦" + amount.toLocaleString();
 
-    document.getElementById("successScreen").style.display = "block";
+
+    document.getElementById("successScreen").style.display =
+        "block";
+
 }
+
+
+// ==============================
+// FINISH PAYMENT
+// ==============================
 
 function finishPayment() {
 
-    document.getElementById("successScreen").style.display = "none";
+    document.getElementById("successScreen").style.display =
+        "none";
 
-    document.getElementById("recipient").value = "";
-    document.getElementById("amount").value = "";
-    document.getElementById("description").value = "";
 
-}
+    document.getElementById("recipient").value =
+        "";
+
+    document.getElementById("amount").value =
+        "";
+
+    document.getElementById("description").value =
+        "";
+
+    document.getElementById("bank").value =
+        "Select bank";
+
+        }
