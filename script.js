@@ -1,4 +1,4 @@
-// OINANCE PAY V1.1
+// OINANCE PAY V1.2
 
 let balanceVisible = true;
 
@@ -75,7 +75,6 @@ function closeSendMoney() {
 
 function getAccountName(accountNumber, bank) {
 
-    // Demo account
     if (
         accountNumber === "0123456789" &&
         bank === "GTBank"
@@ -136,8 +135,6 @@ function continueSend() {
     }
 
 
-    // Find demo account name
-
     const accountName =
         getAccountName(recipient, bank);
 
@@ -155,8 +152,6 @@ function continueSend() {
 
     }
 
-
-    // Show account name
 
     document.getElementById("confirmAmount").textContent =
         "₦" + Number(amount).toLocaleString();
@@ -200,16 +195,129 @@ function backToSend() {
 
 
 // ==============================
-// COMPLETE PAYMENT
+// OPEN PIN SCREEN
 // ==============================
 
 function completePayment() {
+
+    document.getElementById("confirmScreen").style.display =
+        "none";
+
+    document.getElementById("pinScreen").style.display =
+        "block";
+
+
+    document.getElementById("pinInput").value = "";
+
+    document.getElementById("pinError").textContent = "";
+
+    updatePinDots();
+
+}
+
+
+// ==============================
+// BACK TO CONFIRMATION
+// ==============================
+
+function backToConfirmation() {
+
+    document.getElementById("pinScreen").style.display =
+        "none";
+
+    document.getElementById("confirmScreen").style.display =
+        "block";
+
+}
+
+
+// ==============================
+// PIN DOTS
+// ==============================
+
+function updatePinDots() {
+
+    const pin =
+        document.getElementById("pinInput").value;
+
+
+    for (let i = 1; i <= 4; i++) {
+
+        const dot =
+            document.getElementById("dot" + i);
+
+
+        if (i <= pin.length) {
+
+            dot.classList.add("filled");
+
+        } else {
+
+            dot.classList.remove("filled");
+
+        }
+
+    }
+
+}
+
+
+// Update dots while typing
+
+document.getElementById("pinInput").addEventListener(
+    "input",
+    updatePinDots
+);
+
+
+// ==============================
+// VERIFY PIN
+// ==============================
+
+function verifyPin() {
+
+    const enteredPin =
+        document.getElementById("pinInput").value;
+
+
+    const correctPin = "1234";
+
+
+    if (enteredPin.length !== 4) {
+
+        document.getElementById("pinError").textContent =
+            "Please enter your 4-digit PIN.";
+
+        return;
+
+    }
+
+
+    if (enteredPin !== correctPin) {
+
+        document.getElementById("pinError").textContent =
+            "Incorrect PIN. Please try again.";
+
+        document.getElementById("pinInput").value = "";
+
+        updatePinDots();
+
+        return;
+
+    }
+
+
+    // PIN CORRECT
+
+    document.getElementById("pinError").textContent =
+        "";
+
 
     const amount =
         Number(document.getElementById("amount").value);
 
 
-    document.getElementById("confirmScreen").style.display =
+    document.getElementById("pinScreen").style.display =
         "none";
 
 
@@ -245,4 +353,10 @@ function finishPayment() {
     document.getElementById("bank").value =
         "Select bank";
 
-               }
+
+    document.getElementById("pinInput").value =
+        "";
+
+    updatePinDots();
+
+}
