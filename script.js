@@ -1,4 +1,4 @@
-// OINANCE PAY V1
+// OINANCE PAY V1.1
 
 let balanceVisible = true;
 
@@ -70,6 +70,27 @@ function closeSendMoney() {
 
 
 // ==============================
+// DEMO ACCOUNT NAME LOOKUP
+// ==============================
+
+function getAccountName(accountNumber, bank) {
+
+    // Demo account
+    if (
+        accountNumber === "0123456789" &&
+        bank === "GTBank"
+    ) {
+
+        return "EMEANU CHRIS";
+
+    }
+
+    return null;
+
+}
+
+
+// ==============================
 // CONTINUE SEND
 // ==============================
 
@@ -115,12 +136,34 @@ function continueSend() {
     }
 
 
+    // Find demo account name
+
+    const accountName =
+        getAccountName(recipient, bank);
+
+
+    if (!accountName) {
+
+        alert(
+            "Account name could not be found.\n\n" +
+            "For testing, use:\n" +
+            "Account: 0123456789\n" +
+            "Bank: GTBank"
+        );
+
+        return;
+
+    }
+
+
+    // Show account name
+
     document.getElementById("confirmAmount").textContent =
         "₦" + Number(amount).toLocaleString();
 
 
     document.getElementById("confirmRecipient").textContent =
-        recipient;
+        accountName;
 
 
     document.getElementById("confirmBank").textContent =
@@ -202,4 +245,4 @@ function finishPayment() {
     document.getElementById("bank").value =
         "Select bank";
 
-        }
+               }
