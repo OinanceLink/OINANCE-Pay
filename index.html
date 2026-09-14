@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OINANCE Pay</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <div class="brand">
+            <div class="logo">◎</div>
+            <div>
+                <h1>OINANCE</h1>
+                <span>PAY</span>
+            </div>
+        </div>
+
+        <button class="notification">🔔</button>
+    </header>
+
+
+    <main>
+
+        <!-- Welcome -->
+        <section class="welcome">
+            <p>Welcome back</p>
+            <h2>OINANCE User 👋</h2>
+        </section>
+
+
+        <!-- Wallet -->
+        <section class="wallet-card">
+
+            <div class="wallet-top">
+                <span>Available Balance</span>
+                <button id="hideBalance">👁</button>
+            </div>
+
+            <h3 id="balance">₦100,000.00</h3>
+
+            <div class="wallet-actions">
+
+                <button onclick="showMessage('Add Money')">
+                    <span>＋</span>
+                    Add Money
+                </button>
+
+                <button onclick="showMessage('Withdraw')">
+                    <span>↗</span>
+                    Withdraw
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Services -->
+        <section class="services">
+
+            <h2>Services</h2>
+
+            <div class="service-grid">
+
+                <button onclick="showMessage('Send Money')">
+                    <div>↗</div>
+                    <span>Send</span>
+                </button>
+
+                <button onclick="showMessage('Receive Money')">
+                    <div>↙</div>
+                    <span>Receive</span>
+                </button>
+
+                <button onclick="showMessage('Airtime')">
+                    <div>📱</div>
+                    <span>Airtime</span>
+                </button>
+
+                <button onclick="showMessage('Data')">
+                    <div>🌐</div>
+                    <span>Data</span>
+                </button>
+
+                <button onclick="showMessage('Electricity')">
+                    <div>💡</div>
+                    <span>Electricity</span>
+                </button>
+
+                <button onclick="showMessage('Bills')">
+                    <div>🧾</div>
+                    <span>Bills</span>
+                </button>
+
+                <button onclick="showMessage('QR Pay')">
+                    <div>▦</div>
+                    <span>QR Pay</span>
+                </button>
+
+                <button onclick="showMessage('More')">
+                    <div>•••</div>
+                    <span>More</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Transactions -->
+        <section class="transactions">
+
+            <div class="section-title">
+                <h2>Recent Transactions</h2>
+                <button onclick="showMessage('All Transactions')">
+                    See all
+                </button>
+            </div>
+
+            <div class="transaction">
+
+                <div class="transaction-icon">↙</div>
+
+                <div class="transaction-info">
+                    <strong>Money Received</strong>
+                    <small>Today • 10:42 AM</small>
+                </div>
+
+                <strong class="received">+₦25,000</strong>
+
+            </div>
+
+
+            <div class="transaction">
+
+                <div class="transaction-icon">📱</div>
+
+                <div class="transaction-info">
+                    <strong>Airtime</strong>
+                    <small>Yesterday • 6:21 PM</small>
+                </div>
+
+                <strong>-₦2,000</strong>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- Bottom Navigation -->
+
+    <nav class="bottom-nav">
+
+        <button class="active" onclick="showMessage('Home')">
+            <span>⌂</span>
+            Home
+        </button>
+
+        <button onclick="showMessage('Payments')">
+            <span>↗</span>
+            Pay
+        </button>
+
+        <button onclick="showMessage('Transactions')">
+            <span>▤</span>
+            History
+        </button>
+
+        <button onclick="showMessage('Profile')">
+            <span>●</span>
+            Profile
+        </button>
+
+    </nav>
+
+
+    <div id="message"></div>
+
+
+    <script src="script.js"></script>
+
+</body>
+                  </html>
