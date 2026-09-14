@@ -33,3 +33,68 @@ function showMessage(text) {
     }, 2000);
 
 }
+// SEND MONEY FLOW
+
+function openSendMoney() {
+    document.getElementById("sendScreen").style.display = "block";
+}
+
+function closeSendMoney() {
+    document.getElementById("sendScreen").style.display = "none";
+}
+
+function continueSend() {
+
+    const recipient = document.getElementById("recipient").value;
+    const bank = document.getElementById("bank").value;
+    const amount = document.getElementById("amount").value;
+    const description = document.getElementById("description").value;
+
+    if (!recipient || bank === "Select bank" || !amount) {
+        alert("Please complete the payment details.");
+        return;
+    }
+
+    document.getElementById("confirmAmount").textContent =
+        "₦" + Number(amount).toLocaleString();
+
+    document.getElementById("confirmRecipient").textContent =
+        recipient;
+
+    document.getElementById("confirmBank").textContent =
+        bank;
+
+    document.getElementById("confirmDescription").textContent =
+        description || "No description";
+
+    document.getElementById("sendScreen").style.display = "none";
+
+    document.getElementById("confirmScreen").style.display = "block";
+}
+
+function backToSend() {
+    document.getElementById("confirmScreen").style.display = "none";
+    document.getElementById("sendScreen").style.display = "block";
+}
+
+function completePayment() {
+
+    const amount = document.getElementById("amount").value;
+
+    document.getElementById("confirmScreen").style.display = "none";
+
+    document.getElementById("successAmount").textContent =
+        "₦" + Number(amount).toLocaleString();
+
+    document.getElementById("successScreen").style.display = "block";
+}
+
+function finishPayment() {
+
+    document.getElementById("successScreen").style.display = "none";
+
+    document.getElementById("recipient").value = "";
+    document.getElementById("amount").value = "";
+    document.getElementById("description").value = "";
+
+}
