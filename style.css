@@ -301,3 +301,137 @@ main {
         padding: 13px 3px;
     }
 }
+
+/* SEND MONEY */
+
+.screen {
+    position: fixed;
+    inset: 0;
+    background: #f5f6f8;
+    z-index: 50;
+    display: none;
+    overflow-y: auto;
+}
+
+.screen-header {
+    height: 70px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.screen-header button {
+    background: #f1f2f4;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 22px;
+}
+
+.screen-header h2 {
+    font-size: 18px;
+}
+
+.send-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 25px 20px;
+}
+
+.form-label {
+    font-size: 13px;
+    color: #666;
+    margin: 18px 0 8px;
+}
+
+.send-container input,
+.send-container select {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    background: white;
+    font-size: 15px;
+    outline: none;
+}
+
+.continue-button {
+    width: 100%;
+    padding: 17px;
+    margin-top: 25px;
+    border-radius: 14px;
+    background: #111;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.confirmation {
+    max-width: 600px;
+    margin: auto;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.confirm-icon,
+.success-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #111;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto 20px;
+    font-size: 30px;
+}
+
+.confirmation h3 {
+    font-size: 32px;
+    margin: 10px 0;
+}
+
+.confirm-details {
+    background: white;
+    border-radius: 16px;
+    padding: 18px;
+    margin-top: 25px;
+    text-align: left;
+}
+
+.confirm-details p {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+}
+
+.confirm-details p:last-child {
+    border-bottom: none;
+}
+
+.success {
+    max-width: 600px;
+    margin: auto;
+    padding: 100px 25px;
+    text-align: center;
+}
+
+.success-icon {
+    background: #111;
+}
+
+.success h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.success h3 {
+    font-size: 32px;
+    margin: 20px 0;
+}
